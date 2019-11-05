@@ -1,0 +1,10 @@
+﻿@inject Microsoft.AspNetCore.Components.NavigationManager UriHelper
+<a href="@(string.Format(Info.Link,UriHelper.Uri,Title))" title="@Info.Describe" class="@Class"><img src="@Info.ImgPath" /></a>
+@code{
+    [Parameter]
+    public ShareModel Info { get; set; }
+    [Parameter]
+    public string Class { get; set; }
+    [Parameter]
+    public string Title { get; set; }
+}

@@ -1,0 +1,36 @@
+﻿@page "/tag/{TagName}/"
+@inject TagService tag
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-10">
+            @if (titles != null)
+            {
+                <h4>@titles.Count Posts About</h4>
+                <h2>@TagName</h2>
+                <hr />
+                @foreach (var title in titles)
+                {
+                    <ArticleSummary Summary="@title"></ArticleSummary>
+                }
+            }
+        </div>
+    </div>
+</div>
+@code{
+    private string tagName;
+    [Parameter]
+    public string TagName
+    {
+        get => tagName;
+        set => tagName = value.UrlDecode();
+    }
+    List<ArticleSummaryModel> titles;
+    protected override async Task OnParametersSetAsync()
+    {
+        await LoadSummaries();
+    }
+    async Task LoadSummaries()
+    {
+        titles = await tag.GetInfo(tagName);
+    }
+}

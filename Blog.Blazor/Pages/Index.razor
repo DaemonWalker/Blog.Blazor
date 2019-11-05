@@ -1,0 +1,20 @@
+﻿@page "/"
+@inject DataService data
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-10 col-xs-12">
+            @if (articleSummaries != null)
+            {
+                <ArticleList Summaries="@articleSummaries"></ArticleList>
+            }
+        </div>
+    </div>
+</div>
+@code{
+    SortType sortType = SortType.Latest;
+    List<ArticleSummaryModel> articleSummaries;
+    protected override async Task OnInitializedAsync()
+    {
+        articleSummaries = await data.GetArcitalTitles(sortType);
+    }
+}

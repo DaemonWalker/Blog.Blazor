@@ -1,0 +1,14 @@
+﻿<div class="articleSummary">
+    <h3>
+        <a href=@($"/Article/{Summary.TitleEn}")>@Summary.Title</a>
+    </h3>
+
+    <time>@Summary.Date.ToLoacalTimeString()</time>
+    <TagShower Tags="@Summary.Tags"></TagShower>
+
+    <p>@Summary.Summary</p>
+</div>
+@code{
+    [Parameter]
+    public ArticleSummaryModel Summary { get; set; }
+}

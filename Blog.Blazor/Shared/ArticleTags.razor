@@ -1,0 +1,22 @@
+﻿@inject TagService tag
+@if (tags != null)
+{
+    <ul class="nav flex-column">
+        @foreach (var tag in tags)
+        {
+            <li class="nav-item px-3">
+                <NavLink class="nav-link" href=@($"tag/{tag.Name.UrlEncode()}/")>
+                    <span class="oi oi-tag" aria-hidden="true"></span> @tag.Name
+                </NavLink>
+            </li>
+        }
+    </ul>
+}
+@code{
+    List<TagModel>
+    tags;
+    protected override async Task OnInitializedAsync()
+    {
+        tags = await tag.GetTags();
+    }
+}

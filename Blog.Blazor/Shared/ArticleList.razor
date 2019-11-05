@@ -1,0 +1,17 @@
+﻿@if (Summaries == null)
+{
+    <p>Loading</p>
+}
+else
+{
+
+    @foreach (var summary in Summaries)
+    {
+        <ArticleSummary Summary="@summary"></ArticleSummary>
+    }
+
+}
+@code{
+    [Parameter]
+    public List<ArticleSummaryModel> Summaries { get; set; }
+}

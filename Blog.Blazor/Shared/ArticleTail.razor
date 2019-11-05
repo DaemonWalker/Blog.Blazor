@@ -1,0 +1,31 @@
+﻿@inject DataService data
+<hr />
+<div class="container articleTail">
+    <div class="row">
+        <div class="col-md">
+            <img src="/images/about.jpg" class="head" /> Daemon Walker
+            <div><a href="">GitHub</a></div>
+            <p class="describe">忠实的软狗，半吊子.Net程序员</p>
+        </div>
+        <div class="col-md">
+            <h4>Share this Post</h4>
+            @if (shareModels != null)
+            {
+                foreach (var item in shareModels)
+                {
+                    <ShareTool Info="@item" Class="" Title="@Title"></ShareTool>
+                }
+            }
+        </div>
+    </div>
+</div>
+<hr />
+@code{
+    [Parameter]
+    public string Title { get; set; }
+    List<ShareModel> shareModels;
+    protected override async Task OnInitializedAsync()
+    {
+        shareModels = await data.GetShareWays();
+    }
+}

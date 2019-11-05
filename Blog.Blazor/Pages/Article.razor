@@ -1,0 +1,29 @@
+﻿@page "/Article/{ArticleName}";
+@inject IJSRuntime JSRuntime
+@inject ArticleService article
+<div class="container article-Content">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-sm-10 col-xs-12">
+            @if (articleContent != null)
+            {
+                <h3>@articleContent.Title</h3>
+                @((MarkupString)articleContent.Content)
+            }
+        </div>
+    </div>
+</div>
+
+<ArticleTail Title="@ArticleName"></ArticleTail>
+@code{
+    [Parameter]
+    public string ArticleName { get; set; }
+    ArticleModel articleContent;
+    protected override async Task OnInitializedAsync()
+    {
+        articleContent = await article.GetArticle(ArticleName);
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeAsync<Task>("loadHighlight.load");
+    }
+}
