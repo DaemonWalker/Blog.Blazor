@@ -2,13 +2,9 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
-    "iis": {
-      "applicationUrl": "http://localhost/Blog.Blazor",
-      "sslPort": 0
-    },
     "iisExpress": {
-      "applicationUrl": "http://localhost:2567",
-      "sslPort": 0
+      "applicationUrl": "http://localhost:5633",
+      "sslPort": 44325
     }
   },
   "profiles": {
@@ -19,28 +15,20 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "Blog.Blazor": {
+    "WebApplication1": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:5000"
-    },
-    "Snapshot Debugger": {
-      "commandName": "Snapshot Debugger"
+      "applicationUrl": "https://localhost:5001;http://localhost:5000"
     },
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
-      "environmentVariables": {
-        "ASPNETCORE_URLS": "https://+:443;http://+:80",
-        "ASPNETCORE_HTTPS_PORT": "44344"
-      },
-      "httpPort": 10000,
-      "useSSL": true,
-      "sslPort": 44344
+      "publishAllPorts": true,
+      "useSSL": true
     },
     "newProfile1": {
       "commandName": "Executable"

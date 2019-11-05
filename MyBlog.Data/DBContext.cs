@@ -56,9 +56,27 @@ namespace MyBlog.Data
             return r;
         }
 
+        public string GetDBPath()
+        {
+            return this.dbConnection.DataSource + "\t" + this.dbConnection.Database;
+        }
+
         public void Dispose()
         {
-            dbConnection.Close();
+            Dispose(true);
+        }
+        private bool disposed = false;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                if (disposed == false)
+                {
+                    this.disposed = true;
+                    this.dbConnection.Close();
+                }
+            }
+            GC.SuppressFinalize(this);
         }
     }
 }
