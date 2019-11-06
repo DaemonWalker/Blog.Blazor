@@ -1,5 +1,12 @@
-﻿<h3>TestInfo</h3>
+﻿@page "/info.html"
+@inject InfoService info
+<h3>TestInfo</h3>
+<p>@dbStr</p>
 
 @code {
-
+    private string dbStr;
+    async override protected Task OnInitializedAsync()
+    {
+        dbStr = await info.GetDBPath();
+    }
 }

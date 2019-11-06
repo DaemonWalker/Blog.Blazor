@@ -14,6 +14,7 @@ namespace Blog.Blazor.Utils
             services.AddSingleton<DataService>();
             services.AddSingleton<ArticleService>();
             services.AddSingleton<TagService>();
+            services.AddSingleton<InfoService>();
         }
     }
 }

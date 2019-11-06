@@ -15,7 +15,7 @@ namespace Blog.Blazor.Services
         }
         public Task<string> GetDBPath()
         {
-            return dBContext.con
+            return Task.FromResult(dBContext.GetDBPath());
         }
     }
 }
