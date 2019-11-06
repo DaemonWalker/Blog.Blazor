@@ -1,5 +1,6 @@
 ﻿using Blog.Blazor.Services;
 using Microsoft.Extensions.DependencyInjection;
+using MyBlog.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Blog.Blazor.Utils
     {
         public static void AddServices(this IServiceCollection services)
         {
+            services.AddSingleton<DataBase>();
+            services.AddSingleton<DBContext>();
             services.AddSingleton<DataService>();
             services.AddSingleton<ArticleService>();
             services.AddSingleton<TagService>();

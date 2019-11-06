@@ -32,7 +32,6 @@ namespace Blog.Blazor
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
-            services.AddSingleton<DataBase>();
             services.AddServices();
         }
 
