@@ -2,11 +2,13 @@
 @page "/info"
 @inject InfoService info
 <h3>TestInfo</h3>
-@foreach (var f in files)
+@if (files != null)
 {
+    foreach (var f in files)
+    {
     <p>@f</p>
+    }
 }
-
 @code {
     private List<string> files;
     async override protected Task OnInitializedAsync()
