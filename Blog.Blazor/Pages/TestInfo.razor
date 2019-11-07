@@ -2,12 +2,15 @@
 @page "/info"
 @inject InfoService info
 <h3>TestInfo</h3>
-<p>@dbStr</p>
+@foreach (var f in files)
+{
+    <p>@f</p>
+}
 
 @code {
-    private string dbStr;
+    private List<string> files;
     async override protected Task OnInitializedAsync()
     {
-        dbStr = await info.GetDBPath();
+        files = await info.LS();
     }
 }
