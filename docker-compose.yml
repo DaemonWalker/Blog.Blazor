@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  blog.blazor:
+    image: ${DOCKER_REGISTRY-}blogblazor
+    build:
+      context: .
+      dockerfile: Blog.Blazor/Dockerfile
