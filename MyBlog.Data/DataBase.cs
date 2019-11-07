@@ -10,7 +10,7 @@ namespace MyBlog.Data
     {
         public List<ArticleSummaryModel> QueryLastestSixArticles()
         {
-            var sql = @"select * from article t order by t.Date desc limit 6";
+            var sql = @"select * from Article t order by t.Date desc limit 6";
             List<ArticleSummaryModel> list;
             using (var db = new DBContext())
             {
@@ -24,7 +24,7 @@ namespace MyBlog.Data
         }
         public List<TagModel> QueryAllTags()
         {
-            var sql = @"select distinct(t.Tag) as name from tags t";
+            var sql = @"select distinct(t.Tag) as name from Tags t";
             using (var db = new DBContext())
             {
                 return db.SetSql(sql).Query<TagModel>();
@@ -40,8 +40,8 @@ SELECT
 	t.Summary,
 	t.TitleEn 
 FROM
-	article t
-	INNER JOIN tags t1 ON t.titleen = t1.titleen 
+	Article t
+	INNER JOIN Tags t1 ON t.titleen = t1.titleen 
 WHERE
 	t1.tag = @tag";
             using (var db = new DBContext())
@@ -57,7 +57,7 @@ WHERE
 
         public List<TagModel> QueryTagsByArticle(string titleEn)
         {
-            var sql = @"select t.Tag as name from tags t where t.TitleEn= @TitleEn";
+            var sql = @"select t.Tag as name from Tags t where t.TitleEn= @TitleEn";
             using (var db = new DBContext())
             {
                 return db.AddParam(DbType.String, "@TitleEn", titleEn).SetSql(sql).Query<TagModel>();
@@ -65,10 +65,18 @@ WHERE
         }
         public ArticleModel QueryArticleByTitleEn(string titleEn)
         {
-            var sql = @"select * from article t where t.TitleEn= @TitleEn";
+            var sql = @"select * from Article t where t.TitleEn= @TitleEn";
             using (var db = new DBContext())
             {
                 return db.AddParam(DbType.String, "@TitleEn", titleEn).SetSql(sql).Query<ArticleModel>().First();
+            }
+        }
+        public int CountAllTables()
+        {
+            var sql = @"SELECT name FROM sqlite_master WHERE type='table' ORDER BY name";
+            using (var db = new DBContext())
+            {
+                return db.SetSql(sql).ExecuteNoQuery;
             }
         }
     }
