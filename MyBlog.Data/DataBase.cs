@@ -71,13 +71,5 @@ WHERE
                 return db.AddParam(DbType.String, "@TitleEn", titleEn).SetSql(sql).Query<ArticleModel>().First();
             }
         }
-        public int CountAllTables()
-        {
-            var sql = @"SELECT name FROM sqlite_master WHERE type='table' ORDER BY name";
-            using (var db = new DBContext())
-            {
-                return db.SetSql(sql).ExecuteNoQuery;
-            }
-        }
     }
 }
